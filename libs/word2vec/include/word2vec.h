@@ -8,11 +8,16 @@
 #include "dataset.h"
 
 
+namespace wv{
+    class Word2Vec;
+}
+
+
 /*
     Simple word2vec
 
 */
-class Word2Vec {
+class wv::Word2Vec {
 
 private:
 
