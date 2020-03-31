@@ -5,12 +5,7 @@
 #include <cctype>
 
 
-// Stopwords
-str_set Dataset::stopwords {
-    "the",
-    "a"
-};
-
+namespace wv{
 
 Dataset::Dataset(std::string filename) {
 
@@ -22,31 +17,13 @@ Dataset::Dataset(std::string filename) {
     }
 
     // load whole file into string
-    std::string buffer((std::istreambuf_iterator<char>(in_s)),
-                       std::istreambuf_iterator<char>());
+    str buffer((std::istreambuf_iterator<char>(in_s)),
+               std::istreambuf_iterator<char>());
     
+    corpus_ = tokenize(buffer);
 
-    std::cout << "==============" << std::endl;
-    std::cout << strip_(buffer) << std::endl;
-    std::cout << "==============" << std::endl;
+    std::cout << corpus_ << std::endl;
 }
 
 
-str strip_(const str& txt) {
-
-    if(txt.empty()) return "";
-
-    auto txtlen = txt.length();
-
-    int first_nonws = 0;
-    int last_nonws = txt.length() - 1;
-    for(; first_nonws < txtlen && isspace(txt[first_nonws]); ++first_nonws);
-    for(; 0 <= last_nonws      && isspace(txt[last_nonws]);  --last_nonws);
-
-    return txt.substr(first_nonws, last_nonws);
-}
-
-
-str filter_stopwords_(const str& txt) {
-
-}
+}  // end namespace wv

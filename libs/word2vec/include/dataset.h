@@ -5,30 +5,23 @@
 #include <set>
 
 #include "types.h"
+#include "text_utils.h"
 
 
-class Dataset {
+namespace wv{
+    class Dataset;
+}
 
-    static str_set stopwords;
 
+/*
+    Dataset
+*/
+class wv::Dataset {
 
 private:
 
-    str   src_filename_;
-    text  corpus_;
-
-
-    /*
-        Remove whitespace characters at the beginning
-        and the end of text
-    */
-    str strip_(const str& txt);
-
-
-    /*
-        Filter stopwords
-    */
-    str filter_stopwords_(const str& txt);
+    str     src_filename_;
+    corpus  corpus_;
 
 
 public:
